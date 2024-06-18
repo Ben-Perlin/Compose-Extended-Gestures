@@ -11,7 +11,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ScrollableTabRow
+import androidx.compose.material.Surface
+import androidx.compose.material.Tab
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -44,7 +48,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun HomeContent() {
 
-    val pagerState: PagerState = rememberPagerState(initialPage = 0)
+    val pagerState: PagerState = rememberPagerState {
+        tabList.size
+    }
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -72,8 +78,7 @@ private fun HomeContent() {
     }
 
     HorizontalPager(
-        state = pagerState,
-        pageCount = tabList.size
+        state = pagerState
     ) { page: Int ->
 
         when (page) {
